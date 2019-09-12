@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>环形进度条</title>
+    <style>
+        .circle{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(rgba(27,196,199,1) 40%,rgba(186,237,238,1) 0);
+            position: absolute;
+            top:150px;
+            left:50%;
+        }
+
+        .circle_center {
+            width:90%;
+            height:90%;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top:5%;
+            left:5%;
+        }
+
+        .title {
+            position: absolute;
+            top:50%;
+            width:100%;
+            text-align: center;
+        }
+
+        #progress{
+            top:300px;
+            left:50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle" id="circle">
+        <div class="circle_center">
+            <span class="title" id="title">40%</span>
+        </div>
+    </div>
+    <input value="40" id="progress" onchange="setProgress()"/>
+    <script>
+        // 设置进度条
+        function setProgress (){
+            var progress = document.getElementById('progress').value;
+            var circle = document.getElementById('circle')
+            var title = document.getElementById('title')
+            circle.style.background = "conic-gradient(rgba(27,196,199,1) " + progress + "%,rgba(186,237,238,1) 0)"
+            title.innerText = progress + '%'
+            console.log('progress',progress)
+            console.log('circle',circle)
+            console.log('title',title)
+        }
+    </script>
+</body>
+</html>
