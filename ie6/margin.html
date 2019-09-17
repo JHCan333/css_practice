@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+     /** 包裹区 **/
+    .area {
+        width: 200px;
+        height: 200px;
+        background-color: #00FFFF;
+    }
+
+     /** 底部指示区 **/
+    .footer {
+        width: 200px;
+        height: 100px;
+        background-color: royalblue;
+    }
+
+     /** 测试，margin 的代码块 **/
+    .testMargin {
+        width:200px;
+        height:100px;
+        float:left;
+        margin:50px;
+        background-color:#0079CC;
+        _margin: 50px 25px;
+    }
+
+     /** 50px 指示区 **/
+    .checkLine {
+        width: 50px;
+        float: left;
+        height: 100px;
+        display: inline-block;
+        background-color: #000;
+    }
+
+     /** 100px 指示区 **/
+    .checkLine2 {
+        width: 50px;
+        height: 100px;
+        display: inline-block;
+        background-color: teal;
+    }
+</style>
+<div class="area">
+    <div class="testMargin"></div>
+</div>
+<div class="footer">
+    <!-- 50px 指示块 -->
+    <span class="checkLine"></span>
+    <!-- 100px 指示块 -->
+    <span class="checkLine2"></span>
+</div>
+</body>
+</html>

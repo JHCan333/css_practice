@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+    .pngImg {
+        border: #FF0000 1px solid;
+        width: 200px;
+        height: 200px;
+    }
+
+    .jpgImg {
+        border: black 1px solid;
+        width: 200px;
+        height: 200px;
+    }
+
+    .pngSpan {
+        border: blue 1px solid;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background: transparent url(https://jhcan333.github.io/can-Share/image/ie6/404.png) no-repeat center top;
+        background-size: cover;
+        _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="https://jhcan333.github.io/can-Share/image/ie6/404.png", sizingMethod='scale'); /*IE6有效*/
+        _background: none; /*IE6有效*/
+    }
+
+    .jpgSpan {
+        border: brown 1px solid;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background: transparent url(https://jhcan333.github.io/can-Share/image/ie6/404.jpg) no-repeat center top;
+        background-size: contain;
+        _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="https://jhcan333.github.io/can-Share/image/ie6/404.jpg", sizingMethod='scale'); /*IE6有效*/
+        _background: none; /*IE6有效*/
+    }
+</style>
+<span class="pngSpan"></span>
+<img class="pngImg" src="https://jhcan333.github.io/can-Share/image/ie6/404.png">
+<span class="jpgSpan"></span>
+<img class="jpgImg" src="https://jhcan333.github.io/can-Share/image/ie6/404.jpg">
+<script>
+    function correctPNG() {
+        var arVersion = navigator.appVersion.split("MSIE")
+        var version = parseFloat(arVersion[1])
+        if((version >= 5.5) && (document.body.filters)) {
+            for(var j = 0; j < document.images.length; j++) {
+                var img = document.images[j]
+                var imgName = img.src.toUpperCase()
+                if(imgName.substring(imgName.length - 3, imgName.length) == "PNG") {
+                    var imgID = (img.id) ? "id='" + img.id + "' " : ""
+                    var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+                    var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+                    var imgStyle = "display:inline-block;" + img.style.cssText
+                    if(img.align == "left") imgStyle = "float:left;" + imgStyle
+                    if(img.align == "right") imgStyle = "float:right;" + imgStyle
+                    if(img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle
+                    var strNewHTML = "<span " + imgID + imgClass + imgTitle +
+                        " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";" +
+                        "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader" +
+                        "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>"
+                    img.outerHTML = strNewHTML
+                    j = j - 1
+                }
+            }
+        }
+    }
+    function addHandler (element, type, handler) {
+        if (element.addEventListener) { // DOM2级 事件处理程序，this 指向元素本身。按照添加的顺序正向执行
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) { // IE 事件处理程序，this 指向 window。按照添加的顺序反向执行
+            element.attachEvent("on" + type, handler);
+        } else { // DOM0级 事件处理程序。只能绑定一个事件处理程序
+            element["on" + type] = handler;
+        }
+    }
+    addHandler(window,'load',correctPNG)
+</script>
+</body>
+</html>
